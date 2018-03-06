@@ -1,0 +1,15 @@
+extends layout
+
+block css
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css", integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M", crossorigin="anonymous")
+  link(rel='stylesheet', href='./stylesheets/styles.css')
+  link(rel='stylesheet', href='./stylesheets/volare.css')
+  link(rel='stylesheet', href='./stylesheets/trash-font.css')
+
+block content
+  #app
+  script window.settings = !{JSON.stringify(settings)}
+  script !{channel ? "window.channel = " + JSON.stringify(channel) : null};
+  script !{tenantId ? "window.tenantId = " + JSON.stringify(tenantId) : null};
+  script !{venueId ? "window.venueId = " + JSON.stringify(venueId) : null};
+  script(src="javascripts/build.js")

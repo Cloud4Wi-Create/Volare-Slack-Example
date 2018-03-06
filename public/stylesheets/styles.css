@@ -1,0 +1,30 @@
+a, .btn {
+  cursor: pointer;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.top-right {
+  top: 12px;
+  right: 20px;
+}
+
+h1, h2, h3, h4, h5 {
+  text-transform: uppercase;
+}
+
+input[type='color'] {
+  padding: 0px;
+  flex: 0 0 3em;
+  border: none;
+}
+
+html, body {
+  height: 100%;
+}
+
+html {
+  overflow-y: scroll;
+}

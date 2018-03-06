@@ -1,0 +1,36 @@
+version: "3.1"
+services:
+  web-slack:
+    build: .
+    container_name: app-slackwebhook
+    image: cloud4wi/app-slackwebhook
+    ports:
+      - 8004:3000
+    depends_on:
+      - db-slack
+    environment:
+      NODE_ENV: production
+      MYSQL_HOST: db-slack
+      MYSQL_DATABASE: app-slackwebhook
+      MYSQL_USER: slackwebhook
+      MYSQL_PASSWORD: password
+      MYSQL_MAX_CONNECTIONS: 10
+      REDIS_URL: redis://cache-slack:6379/0
+      SLACK_CLIENT_ID: 'Here Goes your Client ID' 
+      SLACK_CLIENT_SECRET: 'Here Goes your Client Secret'
+      # URLs
+      CONTEXT_ENDPOINT: "https://volare.cloud4wi.com/controlpanel/1.0/bridge/sessions/"
+    command: "npm start"
+
+  db-slack:
+    image: mysql:5.5
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: app-slackwebhook
+      MYSQL_USER: slackwebhook
+      MYSQL_PASSWORD: slackwebhookpassword
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d:ro
+
+  cache-slack:
+    image: redis:4
